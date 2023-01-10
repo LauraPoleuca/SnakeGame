@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SnakeGame
@@ -53,9 +48,6 @@ namespace SnakeGame
             {
                 goDown = true;
             }
-
-
-
         }
 
         private void KeyIsUp(object sender, KeyEventArgs e)
@@ -110,7 +102,6 @@ namespace SnakeGame
             {
                 if (i == 0)
                 {
-
                     switch (Settings.directions)
                     {
                         case "left":
@@ -144,7 +135,6 @@ namespace SnakeGame
                         GameOver();
                     }
 
-
                     if (Snake[i].X == food.X && Snake[i].Y == food.Y)
                     {
                         EatFood();
@@ -157,7 +147,6 @@ namespace SnakeGame
                         {
                             GameOver();
                         }
-
                     }
                 }
                 else

@@ -14,6 +14,8 @@ namespace SnakeGame
         [STAThread]
         static void Main()
         {
+            Learner learner= new Learner();
+            learner.InitializeQTable();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
