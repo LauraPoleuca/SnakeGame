@@ -24,10 +24,10 @@ namespace SnakeGame
                             FoodVerticalState = foodVerticalState,
                             Surroundings = new List<bool>
                                 {
-                                    surroundingRep / 1 % 2 == 1,
-                                    surroundingRep / 2 % 2 == 1,
-                                    surroundingRep / 4 % 2 == 1,
-                                    surroundingRep / 8 % 2 == 1,
+                                    surroundingRep / 1 % 2 == 0,
+                                    surroundingRep / 2 % 2 == 0,
+                                    surroundingRep / 4 % 2 == 0,
+                                    surroundingRep / 8 % 2 == 0,
                                 }
                         });
                     }
