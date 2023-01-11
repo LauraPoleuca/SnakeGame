@@ -6,30 +6,54 @@ namespace SnakeGame
 {
     internal class Learner
     {
-        public Dictionary<(GameState, Action), double> QTable { get;set; }
+        Random rand = new Random();
+        public Dictionary<string, double> QTable { get;set; }
+
+        public double Epsilon = 1;
 
         public enum Action
         {
             Left, Right, Up, Down
         }
 
+        private int GetActionInt(Action action)
+        {
+            return (int)action;
+        }
+
         public void InitializeQTable()
         {
-            QTable = new Dictionary<(GameState, Action), double>();
+            QTable = new Dictionary<string, double>();
             var possibleStates = GameState.GenerateAllPossibleGameStates();
             foreach (var possibleState in possibleStates)
             {
-                QTable.Add((possibleState, Action.Left), 0);
-                QTable.Add((possibleState, Action.Right), 0);
-                QTable.Add((possibleState, Action.Up), 0);
-                QTable.Add((possibleState, Action.Down), 0);
+                foreach(var action in (Action[])Enum.GetValues(typeof(Action))) 
+                {
+                    var possibleStateString = GameState.GetGameStateActionString(possibleState);
+                    var actionString = GetActionInt(action).ToString();
+                    QTable.Add(possibleStateString + actionString, 0);
+                }
             }
         }
 
-        public string GetAction(List<Circle> snake, Circle food)
+        public Action GetAction(List<Circle> snake, Circle food)
         {
-            var state = GetGameState(snake, food);
-            throw new NotImplementedException();
+            Action action;
+            var actions = (Action[])Enum.GetValues(typeof(Action));
+            if (rand.NextDouble() < Epsilon)
+            {
+                action = actions[rand.Next(actions.Count())];
+            }
+            else
+            {
+                var stateString = GameState.GetGameStateActionString(GetGameState(snake, food));
+                var bestStateString = actions
+                    .Select(act => stateString + GetActionInt(act).ToString())
+                    .OrderByDescending(x => QTable[x])
+                    .First();
+                action = (Action)(bestStateString[bestStateString.Length - 1] - '0');
+            }
+            return action;
         }
 
         private GameState GetGameState(List<Circle> snake, Circle food)

@@ -20,3 +20,6 @@ C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.G
 C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.CoreCompileInputs.cache
 C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\obj\Debug\SnakeGame.exe
 C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\obj\Debug\SnakeGame.pdb
+C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\crist\Documents\GitHub\SnakeGame\SnakeGame\obj\Debug\SnakeGame.csproj.CopyComplete

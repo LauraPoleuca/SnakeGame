@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SnakeGame
@@ -34,6 +35,13 @@ namespace SnakeGame
                 }
             }
             return possibleGameStates;
+        }
+
+        public static string GetGameStateActionString(GameState gameState)
+        {
+            return gameState.FoodVerticalState.ToString() +
+                gameState.FoodHorizontalState.ToString() +
+                string.Join("", gameState.Surroundings.Select(x => x ? "1" : "0"));
         }
     }
 }

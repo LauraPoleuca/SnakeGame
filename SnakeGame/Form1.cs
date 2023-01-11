@@ -19,19 +19,21 @@ namespace SnakeGame
         Random rand = new Random();
 
         bool goLeft, goRight, goDown, goUp;
+        Learner learner;
 
+        string currentDirection = "left";
 
         public Form1()
         {
             InitializeComponent();
             gameTimer.Interval = 1000 / 10;
             new Settings();
+            learner = new Learner();
+            learner.InitializeQTable();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            //var action = learner.GetAction(snake, food)
-
             if (e.KeyCode == Keys.Left && Settings.directions != "right")
             {
                 goLeft = true;
@@ -79,24 +81,62 @@ namespace SnakeGame
         private void GameTimerEvent(object sender, EventArgs e)
         {
             // setting the directions
-
-            if (goLeft)
+            if(true)
             {
-                Settings.directions = "left";
+                var action = learner.GetAction(Snake, food);
+                switch (action)
+                {
+                    case Learner.Action.Left:
+                        Settings.directions = "left";
+                        break;
+                    case Learner.Action.Right:
+                        Settings.directions = "right";
+                        break;
+                    case Learner.Action.Up:
+                        Settings.directions = "up";
+                        break;
+                    case Learner.Action.Down:
+                        Settings.directions = "down";
+                        break;
+                    default:
+                        break;
+                }
             }
-            if (goRight)
+            else
+            {
+                if (goLeft)
+                {
+                    Settings.directions = "left";
+                }
+                if (goRight)
+                {
+                    Settings.directions = "right";
+                }
+                if (goDown)
+                {
+                    Settings.directions = "down";
+                }
+                if (goUp)
+                {
+                    Settings.directions = "up";
+                }
+            }
+            if(Settings.directions == "left" && currentDirection == "right")
             {
                 Settings.directions = "right";
             }
-            if (goDown)
+            if (Settings.directions == "right" && currentDirection == "left")
+            {
+                Settings.directions = "left";
+            }
+            if (Settings.directions == "up" && currentDirection == "down")
             {
                 Settings.directions = "down";
             }
-            if (goUp)
+            if (Settings.directions == "down" && currentDirection == "up")
             {
                 Settings.directions = "up";
             }
-
 
             for (int i = Snake.Count - 1; i >= 0; i--)
             {
@@ -155,6 +195,7 @@ namespace SnakeGame
                     Snake[i].Y = Snake[i - 1].Y;
                 }
             }
+            currentDirection = Settings.directions;
 
             picCanvas.Invalidate();
         }
