@@ -26,7 +26,7 @@ namespace SnakeGame
         public Form1()
         {
             InitializeComponent();
-            gameTimer.Interval = 1000 / 10;
+            gameTimer.Interval = 1000 / 1000;
             new Settings();
             learner = new Learner();
             learner.InitializeQTable();
@@ -81,6 +81,7 @@ namespace SnakeGame
         private void GameTimerEvent(object sender, EventArgs e)
         {
             // setting the directions
+            string reason = null;
             if(true)
             {
                 var action = learner.GetAction(Snake, food);
@@ -160,18 +161,22 @@ namespace SnakeGame
 
                     if (Snake[i].X < 0)
                     {
+                        reason = "Screen";
                         GameOver();
                     }
                     if (Snake[i].X > maxWidth)
                     {
+                        reason = "Screen";
                         GameOver();
                     }
                     if (Snake[i].Y < 0)
                     {
+                        reason = "Screen";
                         GameOver();
                     }
                     if (Snake[i].Y > maxHeight)
                     {
+                        reason = "Screen";
                         GameOver();
                     }
 
@@ -185,6 +190,7 @@ namespace SnakeGame
 
                         if (Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
                         {
+                            reason = "Tail";
                             GameOver();
                         }
                     }
@@ -196,6 +202,8 @@ namespace SnakeGame
                 }
             }
             currentDirection = Settings.directions;
+
+            learner.UpdateQTable(reason, Snake, food);
 
             picCanvas.Invalidate();
         }
@@ -245,7 +253,7 @@ namespace SnakeGame
             score = 0;
             txtScore.Text = "Score: " + score;
 
-            Circle head = new Circle { X = 10, Y = 5 };
+            Circle head = new Circle { X = 16, Y = 16 };
             Snake.Add(head); // adding the head part of the snake to the list
 
             for (int i = 0; i < 10; i++)
@@ -283,6 +291,7 @@ namespace SnakeGame
         {
             gameTimer.Stop();
             startButton.Enabled = true;
+            RestartGame();
         }
     }
 }

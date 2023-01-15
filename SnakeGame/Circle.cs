@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SnakeGame
 {
@@ -17,6 +13,16 @@ namespace SnakeGame
             Y = -1;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Circle circle &&
+                   X == circle.X &&
+                   Y == circle.Y;
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y);
+        }
     }
 }
