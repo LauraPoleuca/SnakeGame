@@ -10,10 +10,9 @@ namespace SnakeGame
         public Dictionary<QTableKey, double> QTable { get; set; }
         public QTableKey PreviousQTableKey = new QTableKey();
 
-        public double Epsilon = 0.1;
+        public double Epsilon;
         public double LearningRate = 0.7;
         public double Gamma = 0.5;
-        public double EpsilonDecay = 0.01;
         public double EpsilonInit = 0.2;
         public double EpsilonEnd = 0.05;
         public int NumberOfEpisodes = 0;
