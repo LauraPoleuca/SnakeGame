@@ -39,6 +39,17 @@ namespace SnakeGame
             return possibleGameStates;
         }
 
+        public GameState (GameState other)
+        {
+            FoodHorizontalState= other.FoodHorizontalState;
+            FoodVerticalState= other.FoodVerticalState;
+            SnakeHead = new Circle(other.SnakeHead);
+            Food = new Circle(other.Food);
+            Surroundings= new List<bool>(other.Surroundings);
+        }
+
+        public GameState() { }
+
         public override bool Equals(object obj)
         {
             return obj is GameState state &&

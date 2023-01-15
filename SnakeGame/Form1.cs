@@ -7,19 +7,16 @@ namespace SnakeGame
 {
     public partial class Form1 : Form
     {
-
         private List<Circle> Snake = new List<Circle>();
         private Circle food = new Circle();
 
         int maxWidth;
         int maxHeight;
-
         int score;
-
         Random rand = new Random();
 
         bool goLeft, goRight, goDown, goUp;
-        Learner learner;
+        ILearner learner = new Learner();
 
         string currentDirection = "left";
         int gameCounter = 0;
@@ -28,7 +25,7 @@ namespace SnakeGame
         public Form1()
         {
             InitializeComponent();
-            gameTimer.Interval = 1000 / 1000;
+            gameTimer.Interval = 1;
             new Settings();
             learner = new Learner();
             learner.InitializeQTable();
@@ -93,16 +90,16 @@ namespace SnakeGame
                 var action = learner.GetAction(Snake, food);
                 switch (action)
                 {
-                    case Learner.Action.Left:
+                    case Action.Left:
                         Settings.directions = "left";
                         break;
-                    case Learner.Action.Right:
+                    case Action.Right:
                         Settings.directions = "right";
                         break;
-                    case Learner.Action.Up:
+                    case Action.Up:
                         Settings.directions = "up";
                         break;
-                    case Learner.Action.Down:
+                    case Action.Down:
                         Settings.directions = "down";
                         break;
                     default:
@@ -302,10 +299,7 @@ namespace SnakeGame
                 maxScore = score;
             }
             Console.WriteLine("Game " + gameCounter + " finished with a score of " + score);
-            //TODO: reorganize code
-            //split methods
             // save and load qvalues
-            //
             RestartGame();
         }
     }
