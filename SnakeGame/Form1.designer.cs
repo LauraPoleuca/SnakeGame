@@ -41,10 +41,9 @@ namespace SnakeGame
             // 
             this.startButton.BackColor = System.Drawing.Color.DarkTurquoise;
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.Location = new System.Drawing.Point(813, 15);
-            this.startButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startButton.Location = new System.Drawing.Point(610, 12);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(152, 69);
+            this.startButton.Size = new System.Drawing.Size(114, 56);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = false;
@@ -53,10 +52,9 @@ namespace SnakeGame
             // picCanvas
             // 
             this.picCanvas.BackColor = System.Drawing.Color.Silver;
-            this.picCanvas.Location = new System.Drawing.Point(12, 15);
-            this.picCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picCanvas.Location = new System.Drawing.Point(9, 12);
             this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(773, 837);
+            this.picCanvas.Size = new System.Drawing.Size(580, 680);
             this.picCanvas.TabIndex = 1;
             this.picCanvas.TabStop = false;
             this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.UpdatePictureBoxGraphics);
@@ -65,10 +63,9 @@ namespace SnakeGame
             // 
             this.txtScore.AutoSize = true;
             this.txtScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScore.Location = new System.Drawing.Point(845, 100);
-            this.txtScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtScore.Location = new System.Drawing.Point(634, 81);
             this.txtScore.Name = "txtScore";
-            this.txtScore.Size = new System.Drawing.Size(94, 25);
+            this.txtScore.Size = new System.Drawing.Size(76, 20);
             this.txtScore.TabIndex = 2;
             this.txtScore.Text = "Score: 0";
             // 
@@ -79,15 +76,15 @@ namespace SnakeGame
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 892);
+            this.ClientSize = new System.Drawing.Size(748, 725);
             this.Controls.Add(this.txtScore);
             this.Controls.Add(this.picCanvas);
             this.Controls.Add(this.startButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "SnakeGame";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();

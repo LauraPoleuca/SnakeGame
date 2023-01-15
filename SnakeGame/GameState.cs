@@ -6,6 +6,7 @@ namespace SnakeGame
 {
     internal class GameState
     {
+        public Circle SnakeHead { get; set; }
         public Circle Food { get; set; }
         public int FoodVerticalState { get; set; } // 1 food is above, -1 food is below, 0 food is on the same line
         public int FoodHorizontalState { get; set; } // 1 food is right of the head, -1 is left, 0 is on the same line

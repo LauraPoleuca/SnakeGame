@@ -22,6 +22,8 @@ namespace SnakeGame
         Learner learner;
 
         string currentDirection = "left";
+        int gameCounter = 0;
+        int maxScore = -1;
 
         public Form1()
         {
@@ -77,12 +79,16 @@ namespace SnakeGame
             RestartGame();
         }
 
-        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void GameTimerEvent(object sender, EventArgs e)
         {
             // setting the directions
             string reason = null;
-            if(true)
+            if (true)
             {
                 var action = learner.GetAction(Snake, food);
                 switch (action)
@@ -122,7 +128,7 @@ namespace SnakeGame
                     Settings.directions = "up";
                 }
             }
-            if(Settings.directions == "left" && currentDirection == "right")
+            if (Settings.directions == "left" && currentDirection == "right")
             {
                 Settings.directions = "right";
             }
@@ -256,13 +262,13 @@ namespace SnakeGame
             Circle head = new Circle { X = 16, Y = 16 };
             Snake.Add(head); // adding the head part of the snake to the list
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Circle body = new Circle();
                 Snake.Add(body);
             }
 
-            food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight)};
+            food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight) };
 
             gameTimer.Start();
 
@@ -283,14 +289,23 @@ namespace SnakeGame
             Snake.Add(body);
 
             food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight) };
-
-
         }
 
         private void GameOver()
         {
             gameTimer.Stop();
             startButton.Enabled = true;
+            gameCounter++;
+            if (maxScore < score)
+            {
+                Console.WriteLine("NEW HIGH SCORE!");
+                maxScore = score;
+            }
+            Console.WriteLine("Game " + gameCounter + " finished with a score of " + score);
+            //TODO: reorganize code
+            //split methods
+            // save and load qvalues
+            //
             RestartGame();
         }
     }
