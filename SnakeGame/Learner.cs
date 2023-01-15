@@ -14,6 +14,10 @@ namespace SnakeGame
         public double LearningRate = 0.7;
         public double Gamma = 0.5;
         public double EpsilonDecay = 0.01;
+        public double EpsilonInit = 0.2;
+        public double EpsilonEnd = 0.05;
+        public int NumberOfEpisodes = 0;
+        public int MaxNoOfEpisodes = 100;
 
         public void InitializeQTable()
         {
@@ -50,14 +54,13 @@ namespace SnakeGame
             var reward = GetReward(reason, snake, food, currentQTableKey.GameState);
             var bestExpectedQValue = GetBestExpectedQValue(newState, reason);
             QTable[currentQTableKey] = (1 - LearningRate) * QTable[currentQTableKey] + LearningRate * (reward + Gamma * bestExpectedQValue);
+            NumberOfEpisodes++;
         }
 
         private void DecayEpsilon()
         {
-            if (Epsilon > 0.05) //there needs to be some small degree of randomness, as the snake can get stuck in infinte loops
-            {
-                Epsilon -= EpsilonDecay;
-            }
+            var r = Math.Max((MaxNoOfEpisodes - NumberOfEpisodes) / MaxNoOfEpisodes, 0);
+            Epsilon = (EpsilonInit - EpsilonEnd) * r + EpsilonEnd;
         }
 
         private QTableKey GetRandomQTableKey(GameState gameState)
